@@ -3,4 +3,6 @@ project(Git_project C)
 
 set(CMAKE_C_STANDARD 11)
 
-add_executable(Git_project main.c)
+add_executable(Git_project main.c
+        libs/data_structures/vector/vector.h
+        libs/data_structures/vector/vector.c)
