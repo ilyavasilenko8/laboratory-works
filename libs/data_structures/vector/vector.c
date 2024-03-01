@@ -18,43 +18,30 @@ vector createVector(size_t n) {
 }
 
 void reserve(vector *v, size_t newCapacity) {
-    if (newCapacity == 0) {
-        free(v->data);
-        v->data = NULL;
-    } else if (newCapacity < v->size) {
-        v->size = newCapacity;
-        v->data = realloc(v->data, newCapacity * sizeof(int));
+    v->data = realloc(v->data, sizeof (int)*newCapacity);
 
-        if (v->data == NULL) {
-            fprintf(stderr, "Failed to allocate memory");
-            exit(EXIT_FAILURE);
-        }
-    } else if (newCapacity > v->capacity) {
-        v->data = realloc(v->data, newCapacity * sizeof(int));
-
-        if (v->data == NULL) {
-            fprintf(stderr, "Failed to allocate memory");
-            exit(EXIT_FAILURE);
-        }
-        v->capacity = newCapacity;
+    if(!v->data){
+        fprintf(stderr, "bad alloc");
+        exit(1);
     }
+    v->capacity = newCapacity;
+    v->size = newCapacity < v->size ? newCapacity : v->size;
+
+    printf("Memory has been succesfully reallocated\n");
 }
 
 void clear(vector *v) {
     v->size = 0;
 }
 
-
 void shrinkToFit(vector *v) {
     v->data = (int *) realloc(v->data, v->size * sizeof(int));
-    v->capacity = v->size;
 }
 
 void deleteVector(vector *v) {
-    free(v->data);
-    v->data = NULL;
     v->size = 0;
     v->capacity = 0;
+    free(v->data);
 }
 
 bool isEmpty(vector *v) {
