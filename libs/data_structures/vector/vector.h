@@ -37,8 +37,12 @@ int getVectorValue(vector *v, size_t i);
 //добавляет элемент x в конец вектора v
 void pushBack(vector *v, int x);
 
+void test_pushBack_emptyVector();
+
 //удаляет последний элемент из вектора
 void popBack(vector *v);
+
+void test_popBack_notEmptyVector();
 
 //возвращает указатель на index-ый элемент вектора
 int *atVector(vector *v, size_t index);
@@ -48,5 +52,15 @@ int *back(vector *v);
 
 //возвращает указатель на нудевой элемент вектора
 int *front(vector *v);
+
+void test_atVector_notEmptyVector();
+
+void test_atVector_requestToLastElement();
+
+void test_back_oneElementInVector();
+
+void test_front_oneElementInVector();
+
+void test();
 
 #endif //GIT_PROJECT_VECTOR_H
