@@ -39,6 +39,8 @@ void pushBack(vector *v, int x);
 
 void test_pushBack_emptyVector();
 
+void test_pushBack_fullVector();
+
 //удаляет последний элемент из вектора
 void popBack(vector *v);
 
