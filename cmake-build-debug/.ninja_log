@@ -1,4 +1,5 @@
 # ninja log v5
-1	46	7304926693392470	CMakeFiles/Git_project.dir/main.c.obj	f269eb9e444ebf09
+2	46	7310900461868659	CMakeFiles/Git_project.dir/main.c.obj	f269eb9e444ebf09
 47	104	7304926693952979	Git_project.exe	fe5d295194c668ae
-4	58	7304926262209518	CMakeFiles/Git_project.dir/libs/data_structures/vector/vector.c.obj	63226d1e4fe17acf
+2	105	7310899865882072	CMakeFiles/Git_project.dir/libs/data_structures/vector/vector.c.obj	63226d1e4fe17acf
+6	105	7310899865882072	CMakeFiles/Git_project.dir/libs/data_structures/vector/vectorVoid.c.obj	cab9f526a7de33c6

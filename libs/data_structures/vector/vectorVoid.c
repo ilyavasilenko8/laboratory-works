@@ -50,7 +50,6 @@ void deleteVectorV(vectorVoid *v) {
     free(v->data);
 }
 
-
 bool isEmptyV(vectorVoid *v) {
     return v->size == 0 ? true : false;
 }

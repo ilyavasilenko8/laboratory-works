@@ -2,7 +2,7 @@
 #include "libs/data_structures/vector/vector.h"
 #include "libs/data_structures/vector/vectorVoid.h"
 
-void test(){
+/*void test(){
     test_pushBack_emptyVector();
     test_pushBack_fullVector();
     test_popBack_notEmptyVector();
@@ -10,7 +10,7 @@ void test(){
     test_atVector_requestToLastElement();
     test_back_oneElementInVector();
     test_front_oneElementInVector();
-}
+}*/
 
 int main(){
     test2();
@@ -18,5 +18,4 @@ int main(){
     //test1();
     //test2();
 
-    return 0;
 }
