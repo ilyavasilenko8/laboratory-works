@@ -7,10 +7,11 @@ int main(){
     //test2();
     // test1();
     //test2();
-    matrix m = getMemMatrix(2,2);
-    inputMatrix(&m);
-    selectionSortColsMatrixByColCriteria(m, getSum);
-    outputMatrix(m);
+    //matrix m = getMemMatrix(2,2);
+    //inputMatrix(&m);
+    //selectionSortColsMatrixByColCriteria(m, getSum);
+    //outputMatrix(m);
 
+    test_matrix();
     return 0;
 }

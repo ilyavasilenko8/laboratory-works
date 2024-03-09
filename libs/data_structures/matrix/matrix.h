@@ -78,5 +78,37 @@ position getMinValuePos(matrix m);
 //возвращает позицию максимального элемента матрицы m
 position getMaxValuePos(matrix m);
 
+//возвращает матрицу размера nRows на nCols, построенную из элементов массива a
+matrix createMatrixFromArray(const int *a, size_t nRows, size_t nCols);
+
+//возвращает указатель на нулевую матрицу массива из nMatrices матриц, размещенных
+//в динамической памяти, построенных из элементов массива a
+matrix *createArrayOfMatrixFromArray(const int *values, size_t nMatrices, size_t nRows, size_t nCols);
+
+void test_swap_rows();
+
+void test_swap_columns();
+
+void test_is_square_matrix_true();
+
+void test_is_square_matrix_false();
+
+void test_is_e_matrix_true();
+
+void test_is_e_matrix_false();
+
+void test_is_symmetric_matrix_true();
+
+void test_is_symmetric_matrix_false();
+
+void test_transpose_matrix();
+
+void test_get_min_value_pos();
+
+void test_get_max_value_pos();
+
+void test_matrix();
+
 #endif //GIT_PROJECT_MATRIX_H
+
 
