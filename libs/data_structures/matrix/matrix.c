@@ -1,5 +1,7 @@
 #include <malloc.h>
 #include <stdio.h>
+#include <assert.h>
+#include <memory.h>
 #include "matrix.h"
 
 matrix getMemMatrix(int nRows, int nCols) {
@@ -32,30 +34,49 @@ void freeMemMatrices(matrix *ms, int nMatrices) {
 }
 
 void inputMatrix(matrix *m) {
-    for(int i = 0; i < m->nRows; i++){
-        for(int j = 0; j < m->nCols; j++){
+    for (int i = 0; i < m->nRows; i++) {
+        for (int j = 0; j < m->nCols; j++) {
             scanf("%d", &m->values[i][j]);
         }
     }
 }
 
-void inputMatrices(matrix *ms, int nMatrices){
-    for(int i = 0; i < nMatrices; i++){
+void inputMatrices(matrix *ms, int nMatrices) {
+    for (int i = 0; i < nMatrices; i++) {
         inputMatrix(&ms[i]);
     }
 }
 
-void outputMatrix(matrix m){
-    for(int i = 0; i < m.nRows; i++){
-        for(int j = 0; j < m.nCols; j++){
+void outputMatrix(matrix m) {
+    for (int i = 0; i < m.nRows; i++) {
+        for (int j = 0; j < m.nCols; j++) {
             printf("%d ", m.values[i][j]);
         }
         printf("\n");
     }
 }
 
-void outputMatrices(matrix *ms, int nMatrices){
-    for(int i = 0; i < nMatrices; i++){
+void outputMatrices(matrix *ms, int nMatrices) {
+    for (int i = 0; i < nMatrices; i++) {
         outputMatrix(ms[i]);
+    }
+}
+
+void swapRows(matrix *m, int i1, int i2) {
+    assert(i1 < m->nRows && i2 < m->nRows);
+
+    int *temp = m->values[i1];
+
+    memcpy(&m->values[i1], &m->values[i2], sizeof(int *));
+    memcpy(&m->values[i2], &temp, sizeof(int *));
+}
+
+void swapColumns(matrix *m, int j1, int j2) {
+    assert(j1 < m->nCols && j2 < m->nCols);
+    for (int i = 0; i < m->nRows; i++) {
+        int temp = m->values[i][j1];
+
+        memcpy(&m->values[i][j1], &m->values[i][j2], sizeof(int));
+        memcpy(&m->values[i][j2], &temp, sizeof(int));
     }
 }
