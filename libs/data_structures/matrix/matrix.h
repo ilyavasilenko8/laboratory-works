@@ -1,5 +1,6 @@
 #ifndef GIT_PROJECT_MATRIX_H
 #define GIT_PROJECT_MATRIX_H
+
 #include <stdbool.h>
 
 typedef struct matrix {
@@ -64,6 +65,12 @@ bool isEMatrix(matrix *m);
 
 //возвращает значение ’истина’, если матрица m является симметричной, ложь – в противном случае
 bool isSymmetricMatrix(matrix *m);
+
+//транспонирует квадратную матрицу m
+void transposeSquareMatrix(matrix *m);
+
+//транспонирует матрицу m
+void transposeMatrix(matrix *m);
 
 #endif //GIT_PROJECT_MATRIX_H
 
