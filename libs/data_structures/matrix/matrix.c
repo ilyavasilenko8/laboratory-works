@@ -31,6 +31,8 @@ void freeMemMatrices(matrix *ms, int nMatrices) {
     for (int i = 0; i < nMatrices; i++) {
         freeMemMatrix(&ms[i]);
     }
+    int nRows = 0;
+    int nCols = 0;
 }
 
 void inputMatrix(matrix *m) {
