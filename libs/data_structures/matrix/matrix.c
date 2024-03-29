@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <assert.h>
 #include <memory.h>
+#include <math.h>
 #include "matrix.h"
 
 matrix getMemMatrix(int nRows, int nCols) {
@@ -919,4 +920,54 @@ void test_getMinInArea() {
     test_getMinInArea_1();
     test_getMinInArea_2();
     test_getMinInArea_3();
+}
+
+float getDistance(int *a, int n){
+    int sum = 0;
+
+    for(int i = 0; i < n; i++){
+        sum += a[i]*a[i];
+    }
+    return sqrtf(sum);
+}
+
+void insertionSortRowsMatrixByRowCriteriaF(matrix m,
+                                           float (*criteria)(int*, int)){
+    float *values = malloc(sizeof(int)*m.nRows);
+
+    for(int i = 0; i < m.nRows; i++){
+        values[i] = criteria(m.values[i], m.nCols);
+    }
+
+    for(int i = 0; i < m.nRows; i++){
+        for(int j = 0; j < i; j++){
+            if(values[i] < values[j]){
+                float t = values[i];
+                values[i] = values[j];
+                values[j] = t;
+                swapRows(&m, i, j);
+            }
+        }
+    }
+    free(values);
+}
+
+void sortByDistance(matrix m){
+    insertionSortRowsMatrixByRowCriteriaF(m, getDistance);
+}
+
+void test_sortByDistances() {
+    matrix m = createMatrixFromArray((int[]) {7, 12,
+                                              9, 2,
+                                              6, 8},3, 2);
+    matrix result = createMatrixFromArray((int[]) {9, 2,
+                                                   6, 8,
+                                                   7, 12},3, 2);
+
+    sortByDistances(m);
+
+    assert(areTwoMatricesEqual(&m, &result));
+
+    freeMemMatrix(&m);
+    freeMemMatrix(&result);
 }

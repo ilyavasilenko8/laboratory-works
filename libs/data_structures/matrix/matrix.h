@@ -190,6 +190,15 @@ void test_getMinInArea_2();
 void test_getMinInArea_3();
 
 void test_getMinInArea();
+
+float getDistance(int *a, int n);
+
+void insertionSortRowsMatrixByRowCriteriaF(matrix m,
+                                           float (*criteria)(int *, int));
+
+void sortByDistances(matrix m);
+
+void test_sortByDistances();
 #endif //GIT_PROJECT_MATRIX_H
 
 

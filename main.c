@@ -1,6 +1,6 @@
 #include "libs/data_structures/matrix/matrix.h"
 
 int main(){
-    test_getMinInArea();
+    test_sortByDistances();
     return 0;
 }
