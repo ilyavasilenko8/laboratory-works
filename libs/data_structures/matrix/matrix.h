@@ -150,6 +150,20 @@ void test_getSquareOfMatrixIfSymmetric_2();
 void test_getSquareOfMatrixIfSymmetric_3();
 
 void test_getSquareOfMatrixIfSymmetric();
+
+bool isUnique(int *a, int n);
+
+void transposeIfMatrixHasNotEqualSumOfRows(matrix *m);
+
+void test_transposeIfMatrixHasNotEqualSumOfRows_1();
+
+void test_transposeIfMatrixHasNotEqualSumOfRows_2();
+
+void test_transposeIfMatrixHasNotEqualSumOfRows_3();
+
+void test_transposeIfMatrixHasNotEqualSumOfRows_4();
+
+void test_transposeIfMatrixHasNotEqualSumOfRows();
 #endif //GIT_PROJECT_MATRIX_H
 
 
