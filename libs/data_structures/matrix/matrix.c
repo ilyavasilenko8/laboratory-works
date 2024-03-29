@@ -429,23 +429,23 @@ void test_matrix() {
 }
 
 
-void swap_rows_with_min_and_max_elemnts(matrix *m){
+void swap_rows_with_min_and_max_elemnts(matrix *m) {
     position max_pos = getMaxValuePos(*m);
     position min_pos = getMinValuePos(*m);
 
-    if(max_pos.rowIndex != min_pos.rowIndex){
+    if (max_pos.rowIndex != min_pos.rowIndex) {
         swapRows(m, max_pos.rowIndex, min_pos.rowIndex);
     }
 }
 
-void test_swap_rows_with_min_and_max_element_1(){
-    matrix m = createMatrixFromArray((int[]){9,4,3,
-                                             5,2,6,
-                                             7,8,1},3,3);
+void test_swap_rows_with_min_and_max_element_1() {
+    matrix m = createMatrixFromArray((int[]) {9, 4, 3,
+                                              5, 2, 6,
+                                              7, 8, 1}, 3, 3);
 
-    matrix res = createMatrixFromArray((int[]){7,8,1,
-                                               5,2,6,
-                                               9,4,3},3,3);
+    matrix res = createMatrixFromArray((int[]) {7, 8, 1,
+                                                5, 2, 6,
+                                                9, 4, 3}, 3, 3);
     swap_rows_with_min_and_max_elemnts(&m);
     assert(areTwoMatricesEqual(&m, &res));
 
@@ -456,10 +456,10 @@ void test_swap_rows_with_min_and_max_element_1(){
 void test_swap_rows_with_min_and_max_elements_2() {
     matrix m = createMatrixFromArray((int[]) {7, 4, 3,
                                               5, 2, 6,
-                                              9, 8, 1},3, 3);
+                                              9, 8, 1}, 3, 3);
     matrix res = createMatrixFromArray((int[]) {7, 4, 3,
-                                                   5, 2, 6,
-                                                   9, 8, 1},3, 3);
+                                                5, 2, 6,
+                                                9, 8, 1}, 3, 3);
 
     swap_rows_with_min_and_max_elemnts(&m);
 
@@ -469,7 +469,69 @@ void test_swap_rows_with_min_and_max_elements_2() {
     freeMemMatrix(&res);
 }
 
-void test_swap_rows_with_min_and_max_element(){
+void test_swap_rows_with_min_and_max_element() {
     test_swap_rows_with_min_and_max_element_1();
     test_swap_rows_with_min_and_max_element_2();
+}
+
+
+int getMax(int *a, int n){
+    int res = a[0];
+
+    for(int i = 1; i < n; i++){
+        if(a[i] > res){
+            res = a[i];
+        }
+    }
+    return res;
+}
+
+void sortRowsByMinElement(matrix *m){
+    int cols = m->nCols;
+
+    for(int i = 1; i < cols - 1; i++){
+        int max = getMax(m->values[i], cols);
+        int row_idx = i;
+
+        for (int j = 1; j < cols; j++){
+            int max_of_row = getMax(m->values[i], cols);
+
+            if(max_of_row < max){
+                max = max_of_row;
+                row_idx = j;
+            }
+        }
+        if(row_idx != i){
+            swapRows(m,i,row_idx);
+        }
+    }
+}
+
+void test_sortRowsByMinElement_1() {
+    matrix m = createMatrixFromArray((int[]) {7, 1, 2,
+                                              1, 8, 1,
+                                              3, 2, 3},3, 3);
+    matrix res = createMatrixFromArray((int[]) {3, 2, 3,
+                                                   7, 1, 2,
+                                                   1, 8, 1},3, 3);
+
+    sortRowsByMinElement(&m);
+
+    assert(areTwoMatricesEqual(&m, &res));
+
+    freeMemMatrix(&m);
+    freeMemMatrix(&res);
+}
+
+void test_sortRowsByMinElement_2() {
+    matrix m = createMatrixFromArray((int[]) {},0, 0);
+
+    sortRowsByMinElement(&m);
+
+    freeMemMatrix(&m);
+}
+
+void test_sortRowsByMinElement(){
+    test_sortRowsByMinElement_1();
+    test_sortRowsByMinElement_2();
 }

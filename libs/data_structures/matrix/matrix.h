@@ -118,6 +118,16 @@ void test_swap_rows_with_min_and_max_element_1();
 void test_swap_rows_with_min_and_max_element_2();
 
 void test_swap_rows_with_min_and_max_element();
+
+int getMax(int *a, int n);
+
+void sortRowsByMinElement();
+
+void test_sortRowsByMinElement_1();
+
+void test_sortRowsByMinElement_2();
+
+void test_sortRowsByMinElement();
 #endif //GIT_PROJECT_MATRIX_H
 
 
