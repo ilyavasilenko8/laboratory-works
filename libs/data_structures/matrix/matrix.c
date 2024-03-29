@@ -1340,3 +1340,41 @@ void test_print_matrices_with_min_norm() {
     test_print_matrices_with_min_norm_2();
 }
 
+int getNSpecialElement2(matrix m){
+    int res = 0;
+
+    for(int i = 0; i < m.nRows; i++){
+        for(int j = 0; j < m.nCols; j++){
+            bool is_lefts_less = true;
+
+            for(int g = j-1; g >= 0; g--){
+                if(m.values[i][g] >= m.values[i][j]){
+                    is_lefts_less = false;
+                }
+            }
+            if(is_lefts_less){
+                bool is_rights_more = true;
+
+                for (int g = j+1; g < m.nCols; g++){
+                    if(m.values[i][g] <= m.values[i][j]){
+                        is_rights_more = false;
+                    }
+                }
+                if(is_rights_more){
+                    res++;
+                }
+            }
+        }
+    }
+    return res;
+}
+
+void test_getNSpecialElement2() {
+    matrix m = createMatrixFromArray((int[]) {2, 3, 5, 5, 4,
+                                              6, 2, 3, 8, 12,
+                                              12, 12, 2, 1, 2},3, 5);
+
+    assert(getNSpecialElement2(m) == 4);
+
+    freeMemMatrix(&m);
+}
