@@ -1426,3 +1426,30 @@ void test_getVectorIndexWithMaxAngle() {
 
     freeMemMatrix(&m);
 }
+
+long long getScalarProductRowAndCol(matrix m, int i, int j) {
+    int *column = malloc(sizeof(int) * m.nRows);
+
+    for (int g = 0; g < m.nRows; g++) {
+        column[g] = m.values[g][j];
+    }
+
+    return getScalarProduct(m.values[i], column, m.nRows);
+}
+
+long long getSpecialScalarProduct(matrix m) {
+    position max_pos = getMaxValuePos(m);
+    position min_pos = getMinValuePos(m);
+
+    return getScalarProductRowAndCol(m, max_pos.rowIndex, min_pos.colIndex);
+}
+
+void test_getSpecialScalarProduct() {
+    matrix m = createMatrixFromArray((int[]) {1, 2, 3,
+                                              4, 5, 6,
+                                              7, 8, 9}, 3, 3);
+
+    assert(getSpecialScalarProduct(m) == 102);
+
+    freeMemMatrix(&m);
+}
