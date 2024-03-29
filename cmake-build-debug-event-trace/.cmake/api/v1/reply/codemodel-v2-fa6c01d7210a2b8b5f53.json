@@ -39,7 +39,7 @@
 				{
 					"directoryIndex" : 0,
 					"id" : "Git_project::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-Git_project-Debug-aa1ce02283f903d4a483.json",
+					"jsonFile" : "target-Git_project-Debug-aceecde0c0d55395bcbe.json",
 					"name" : "Git_project",
 					"projectIndex" : 0
 				}
@@ -49,7 +49,7 @@
 	"kind" : "codemodel",
 	"paths" : 
 	{
-		"build" : "D:/Test/Git project/cmake-build-debug",
+		"build" : "D:/Test/Git project/cmake-build-debug-event-trace",
 		"source" : "D:/Test/Git project"
 	},
 	"version" : 

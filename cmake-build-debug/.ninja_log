@@ -1,8 +1,4 @@
 # ninja log v5
-2	46	7310900461868659	CMakeFiles/Git_project.dir/main.c.obj	f269eb9e444ebf09
-47	104	7304926693952979	Git_project.exe	fe5d295194c668ae
-2	105	7310899865882072	CMakeFiles/Git_project.dir/libs/data_structures/vector/vector.c.obj	63226d1e4fe17acf
-6	105	7310899865882072	CMakeFiles/Git_project.dir/libs/data_structures/vector/vectorVoid.c.obj	cab9f526a7de33c6
-2	98	7316923021593119	CMakeFiles/Git_project.dir/libs/data_structures/vector/vectorVoid.c.obj	cab9f526a7de33c6
-8	98	7316923021593119	CMakeFiles/Git_project.dir/libs/data_structures/matrix/matrix.c.obj	d383148b1dbc52c
-4	86	7317013768400245	CMakeFiles/Git_project.dir/libs/data_structures/matrix/matrix.c.obj	d383148b1dbc52c
+2	83	7331528439176278	CMakeFiles/Git_project.dir/main.c.obj	ef6ae2471625e547
+0	104	7331550843858446	build.ninja	93fa21e992ae7d65
+2	218	7333948479287569	CMakeFiles/Git_project.dir/main.c.obj	f269eb9e444ebf09

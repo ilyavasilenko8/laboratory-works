@@ -1,17 +1,6 @@
-#include <stdio.h>
-#include "libs/data_structures/vector/vector.h"
-#include "libs/data_structures/vector/vectorVoid.h"
 #include "libs/data_structures/matrix/matrix.h"
 
 int main(){
-    //test2();
-    // test1();
-    //test2();
-    //matrix m = getMemMatrix(2,2);
-    //inputMatrix(&m);
-    //selectionSortColsMatrixByColCriteria(m, getSum);
-    //outputMatrix(m);
-
-    test_matrix();
+    test_swap_rows_with_min_and_max_element();
     return 0;
 }

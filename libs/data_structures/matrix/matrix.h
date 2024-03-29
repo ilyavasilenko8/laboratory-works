@@ -2,6 +2,7 @@
 #define GIT_PROJECT_MATRIX_H
 
 #include <stdbool.h>
+#include <stddef.h>
 
 typedef struct matrix {
     int **values; //элемент матрицы
@@ -109,6 +110,14 @@ void test_get_max_value_pos();
 
 void test_matrix();
 
+
+void swap_rows_with_min_and_max_element(matrix *m);
+
+void test_swap_rows_with_min_and_max_element_1();
+
+void test_swap_rows_with_min_and_max_element_2();
+
+void test_swap_rows_with_min_and_max_element();
 #endif //GIT_PROJECT_MATRIX_H
 
 

@@ -1,6 +1,7 @@
 #ifndef GIT_PROJECT_VECTORVOID_H
 #define GIT_PROJECT_VECTORVOID_H
 #include <limits.h>
+#include <stdbool.h>
 
 typedef struct vectorVoid {
     void *data; //указатель на нулевой элемент вектора
