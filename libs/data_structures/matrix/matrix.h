@@ -180,6 +180,16 @@ int max(int a, int b);
 long long findSumOfMaxesOfPseudoDiagonal(matrix m);
 
 void test_findSumOfMaxesOfPseudoDiagonal();
+
+int getMinInArea(matrix m);
+
+void test_getMinInArea_1();
+
+void test_getMinInArea_2();
+
+void test_getMinInArea_3();
+
+void test_getMinInArea();
 #endif //GIT_PROJECT_MATRIX_H
 
 

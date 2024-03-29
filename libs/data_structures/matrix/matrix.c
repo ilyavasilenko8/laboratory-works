@@ -866,3 +866,57 @@ void test_findSumOfMaxesOfPseudoDiagonal() {
 
     freeMemMatrix(&m);
 }
+
+int getMinArea(matrix m) {
+    if (m.nRows > 0 && m.nCols > 0) {
+        position max_pos = getMaxValuePos(m);
+        int min = m.values[max_pos.rowIndex][max_pos.colIndex];
+
+        for (int i = 0; i < m.nRows; i++) {
+            int idx = max_pos.colIndex - (max_pos.rowIndex - i);
+
+            for (int j = idx; j < max_pos.rowIndex * 2 - i + 1 && j < m.nCols; j++) {
+                if (m.values[i][j] < min) {
+                    min = m.values[i][j];
+                }
+            }
+        }
+        return min;
+    } else {
+        return 0;
+    }
+}
+
+void test_getMinInArea_1() {
+    matrix m = createMatrixFromArray((int[]) {}, 0, 0);
+
+    assert(getMinInArea(m) == 0);
+
+    freeMemMatrix(&m);
+}
+
+void test_getMinInArea_2() {
+    matrix m = createMatrixFromArray((int[]) {10, 7, 5, 6,
+                                              3, 11, 8, 9,
+                                              4, 1, 12, 2}, 3, 4);
+
+    assert(getMinInArea(m) == 5);
+
+    freeMemMatrix(&m);
+}
+
+void test_getMinInArea_3() {
+    matrix m = createMatrixFromArray((int[]) {6, 8, 9, 2,
+                                              7, 12, 3, 4,
+                                              10, 11, 5, 1}, 3, 4);
+
+    assert(getMinInArea(m) == 6);
+
+    freeMemMatrix(&m);
+}
+
+void test_getMinInArea() {
+    test_getMinInArea_1();
+    test_getMinInArea_2();
+    test_getMinInArea_3();
+}
