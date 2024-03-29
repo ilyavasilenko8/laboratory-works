@@ -128,6 +128,16 @@ void test_sortRowsByMinElement_1();
 void test_sortRowsByMinElement_2();
 
 void test_sortRowsByMinElement();
+
+int getMin(int *a, int n);
+
+void sortColsByMinElement(matrix *m);
+
+void test_sortColsByMinElement_1();
+
+void test_sortColsByMinElement_2();
+
+void test_sortColsByMinElement();
 #endif //GIT_PROJECT_MATRIX_H
 
 

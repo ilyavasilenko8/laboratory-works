@@ -475,34 +475,34 @@ void test_swap_rows_with_min_and_max_element() {
 }
 
 
-int getMax(int *a, int n){
+int getMax(int *a, int n) {
     int res = a[0];
 
-    for(int i = 1; i < n; i++){
-        if(a[i] > res){
+    for (int i = 1; i < n; i++) {
+        if (a[i] > res) {
             res = a[i];
         }
     }
     return res;
 }
 
-void sortRowsByMinElement(matrix *m){
+void sortRowsByMinElement(matrix *m) {
     int cols = m->nCols;
 
-    for(int i = 1; i < cols - 1; i++){
+    for (int i = 1; i < cols - 1; i++) {
         int max = getMax(m->values[i], cols);
         int row_idx = i;
 
-        for (int j = 1; j < cols; j++){
+        for (int j = 1; j < cols; j++) {
             int max_of_row = getMax(m->values[i], cols);
 
-            if(max_of_row < max){
+            if (max_of_row < max) {
                 max = max_of_row;
                 row_idx = j;
             }
         }
-        if(row_idx != i){
-            swapRows(m,i,row_idx);
+        if (row_idx != i) {
+            swapRows(m, i, row_idx);
         }
     }
 }
@@ -510,10 +510,10 @@ void sortRowsByMinElement(matrix *m){
 void test_sortRowsByMinElement_1() {
     matrix m = createMatrixFromArray((int[]) {7, 1, 2,
                                               1, 8, 1,
-                                              3, 2, 3},3, 3);
+                                              3, 2, 3}, 3, 3);
     matrix res = createMatrixFromArray((int[]) {3, 2, 3,
-                                                   7, 1, 2,
-                                                   1, 8, 1},3, 3);
+                                                7, 1, 2,
+                                                1, 8, 1}, 3, 3);
 
     sortRowsByMinElement(&m);
 
@@ -524,14 +524,87 @@ void test_sortRowsByMinElement_1() {
 }
 
 void test_sortRowsByMinElement_2() {
-    matrix m = createMatrixFromArray((int[]) {},0, 0);
+    matrix m = createMatrixFromArray((int[]) {}, 0, 0);
 
     sortRowsByMinElement(&m);
 
     freeMemMatrix(&m);
 }
 
-void test_sortRowsByMinElement(){
+void test_sortRowsByMinElement() {
     test_sortRowsByMinElement_1();
     test_sortRowsByMinElement_2();
+}
+
+int getMin(int *a, int n) {
+    int res = a[0];
+
+    for (int i = 1; i < n; i++) {
+        if (a[i] < res) {
+            res = a[i];
+        }
+    }
+    return res;
+}
+
+void sortColsByMinElement(matrix *m) {
+    int cols = m->nCols;
+    int rows = m->nRows;
+
+    for (int i = 0; i < cols - 1; i++) {
+        int *column = malloc(sizeof(int) * rows);
+
+        for (int j = 0; j < rows; j++) {
+            column[j] = m->values[j][i];
+        }
+
+        int min = getMin(column, rows);
+        int idx = i;
+
+        for (int j = i + 1; j < cols; j++) {
+            int *column2 = malloc(sizeof(int) * rows);
+
+            for (int g = 0; g < rows; g++) {
+                column2[g] = m->values[g][i];
+            }
+            int new_min = getMin(column2, rows);
+
+            if (new_min < min) {
+                min = new_min;
+                idx = j;
+            }
+        }
+        if (idx != i) {
+            swapColumns(m, idx, i);
+        }
+    }
+}
+
+void test_sortColsByMinElement_1() {
+    matrix m = createMatrixFromArray((int[]) {3, 5, 2, 4, 3, 3,
+                                              2, 5, 1, 8, 2, 7,
+                                              6, 1, 4, 4, 8, 3}, 3, 6);
+    matrix result = createMatrixFromArray((int[]) {5, 2, 3, 3, 3, 4,
+                                                   5, 1, 2, 2, 7, 8,
+                                                   1, 4, 6, 8, 3, 4}, 3, 6);
+
+    sortColsByMinElement(&m);
+
+    assert(areTwoMatricesEqual(&m, &result));
+
+    freeMemMatrix(&m);
+    freeMemMatrix(&result);
+}
+
+void test_sortColsByMinElement_2() {
+    matrix m = createMatrixFromArray((int[]) {}, 0, 0);
+
+    sortColsByMinElement(&m);
+
+    freeMemMatrix(&m);
+}
+
+void test_sortColsByMinElement() {
+    test_sortColsByMinElement_1();
+    test_sortColsByMinElement_2();
 }
