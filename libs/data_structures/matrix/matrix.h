@@ -244,8 +244,17 @@ int countZeroRows(matrix m);
 
 void printMatrixWithMaxZeroRows(matrix *ms, int nMatrix);
 
-void test_printMatrixWithMaxZeroRows()
+void test_printMatrixWithMaxZeroRows();
 
+int get_matrix_norm(matrix m);
+
+void print_matrices_vith_min_norm();
+
+void test_print_matrices_with_min_norm_1();
+
+void test_print_matrices_with_min_norm_2();
+
+void test_print_matrices_with_min_norm();
 
 #endif //GIT_PROJECT_MATRIX_H
 
