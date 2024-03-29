@@ -225,6 +225,18 @@ void test_swapPenultimateRow_1();
 void test_swapPenultimateRow_2();
 
 void test_swapPenultimateRow();
+
+bool isNonDescendingSorted(int *a, int n);
+
+bool hasAllNonDescendingRows(matrix m);
+
+int countNonDescendingRowsMatrices(matrix *ms, int nMatrix);
+
+void test_countNonDescendingRowsMatrices_1();
+
+void test_countNonDescendingRowsMatrices_2();
+
+void test_countNonDescendingRowsMatrices();
 #endif //GIT_PROJECT_MATRIX_H
 
 
