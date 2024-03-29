@@ -259,6 +259,15 @@ void test_print_matrices_with_min_norm();
 int getNSrecialElement2(matrix m);
 
 void test_getNSpecialElement2();
+
+double getScalarProduct(int *a, int *b, int n);
+
+double getCousine();
+
+int getVectorIndexWithMaxAngle();
+
+void test_getVectorIndexWithMaxAngle();
+
 #endif //GIT_PROJECT_MATRIX_H
 
 
