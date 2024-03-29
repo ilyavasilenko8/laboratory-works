@@ -1090,7 +1090,7 @@ void swapPenultimateRow(matrix m) {
 }
 
 void test_swapPenultimateRow_1() {
-    matrix m = createMatrixFromArray((int[]) {},0, 0);
+    matrix m = createMatrixFromArray((int[]) {}, 0, 0);
 
     swapPenultimateRow(m);
 
@@ -1118,28 +1118,28 @@ void test_swapPenultimateRow() {
     test_swapPenultimateRow_2();
 }
 
-bool isNonDescendingSorted(int *a, int n){
-    for(int i = 0; i < n; i++){
-        if(a[i] < a[i-1]){
+bool isNonDescendingSorted(int *a, int n) {
+    for (int i = 0; i < n; i++) {
+        if (a[i] < a[i - 1]) {
             return false;
         }
     }
     return true;
 }
 
-bool hasAllNonDescendingRows(matrix m){
-    for(int i = 0; i < m.nRows; i++){
-        if(!isNonDescendingSorted(m.values[i], m.nCols)){
+bool hasAllNonDescendingRows(matrix m) {
+    for (int i = 0; i < m.nRows; i++) {
+        if (!isNonDescendingSorted(m.values[i], m.nCols)) {
             return false;
         }
     }
     return true;
 }
 
-int countNonDescendingRowsMatrices(matrix *ms, int nMatrix){
+int countNonDescendingRowsMatrices(matrix *ms, int nMatrix) {
     int res = 0;
-    for(int i = 0; i < nMatrix; i++){
-        if(hasAllNonDescendingRows(ms[i])){
+    for (int i = 0; i < nMatrix; i++) {
+        if (hasAllNonDescendingRows(ms[i])) {
             res++;
         }
     }
@@ -1148,13 +1148,13 @@ int countNonDescendingRowsMatrices(matrix *ms, int nMatrix){
 
 void test_countNonDescendingRowsMatrices_1() {
     matrix m1 = createMatrixFromArray((int[]) {7, 1,
-                                               1, 1},2, 2);
+                                               1, 1}, 2, 2);
     matrix m2 = createMatrixFromArray((int[]) {1, 6,
-                                               2, 2},2, 2);
+                                               2, 2}, 2, 2);
     matrix m3 = createMatrixFromArray((int[]) {5, 4,
-                                               2, 3},2, 2);
+                                               2, 3}, 2, 2);
     matrix m4 = createMatrixFromArray((int[]) {1, 3,
-                                               7, 9},2, 2);
+                                               7, 9}, 2, 2);
 
     matrix *ms = getMemArrayOfMatrices(4, 2, 2);
     ms[0] = m1;
@@ -1169,13 +1169,13 @@ void test_countNonDescendingRowsMatrices_1() {
 
 void test_countNonDescendingRowsMatrices_2() {
     matrix m1 = createMatrixFromArray((int[]) {7, 1,
-                                               1, 1},2, 2);
+                                               1, 1}, 2, 2);
     matrix m2 = createMatrixFromArray((int[]) {1, 0,
-                                               2, 2},2, 2);
+                                               2, 2}, 2, 2);
     matrix m3 = createMatrixFromArray((int[]) {5, 4,
-                                               2, 3},2, 2);
+                                               2, 3}, 2, 2);
     matrix m4 = createMatrixFromArray((int[]) {10, 3,
-                                               7, 9},2, 2);
+                                               7, 9}, 2, 2);
 
     matrix *ms = getMemArrayOfMatrices(4, 2, 2);
     ms[0] = m1;
@@ -1192,3 +1192,80 @@ void test_countNonDescendingRowsMatrices() {
     test_countNonDescendingRowsMatrices_1();
     test_countNonDescendingRowsMatrices_2();
 }
+
+int countValues(const int *a, int n, int value) {
+    int res = 0;
+
+    for (int i = 0; i < n; i++) {
+        if (a[i] == value) {
+            res++;
+        }
+    }
+    return res;
+}
+
+int countZeroRows(matrix m) {
+    int res = 0;
+
+    for (int i = 0; i < m.nRows; i++) {
+        if (countValues(m.values[i], m.nCols, 0) == m.nCols) {
+            res++;
+        }
+    }
+    return res;
+}
+
+void printMatrixWithMaxZeroRows(matrix *ms, int nMatrix) {
+    int *zero_rows = malloc(sizeof(int) * nMatrix);
+    int max_zeros = 0;
+
+    for (int i = 0; i < nMatrix; i++) {
+        zero_rows[i] = countZeroRows(ms[i]);
+
+        if (zero_rows[i] > max_zeros) {
+            max_zeros = zero_rows[i];
+        }
+    }
+    for (int i = 0; i < nMatrix; i++) {
+        if (zero_rows[i] == max_zeros) {
+            outputMatrix(ms[i]);
+        }
+    }
+    free(zero_rows);
+}
+
+void test_printMatrixWithMaxZeroRows() {
+    matrix m1 = createMatrixFromArray((int[]) {0, 1,
+                                               1, 0,
+                                               0, 0},3, 2);
+    matrix m2 = createMatrixFromArray((int[]) {1, 1,
+                                               2, 1,
+                                               1, 1},3, 2);
+    matrix m3 = createMatrixFromArray((int[]) {0, 0,
+                                               0, 0,
+                                               4, 7},3, 2);
+    matrix m4 = createMatrixFromArray((int[]) {0, 0,
+                                               0, 1,
+                                               0, 0},3, 2);
+    matrix m5 = createMatrixFromArray((int[]) {0, 1,
+                                               0, 2,
+                                               0, 3},3, 2);
+
+    matrix *ms = getMemArrayOfMatrices(5, 3, 2);
+    ms[0] = m1;
+    ms[1] = m2;
+    ms[2] = m3;
+    ms[3] = m4;
+    ms[4] = m5;
+
+    assert(countZeroRows(m1) == 1);
+    assert(countZeroRows(m2) == 0);
+    assert(countZeroRows(m3) == 2);
+    assert(countZeroRows(m4) == 2);
+    assert(countZeroRows(m5) == 0);
+
+    printMatrixWithMaxZeroRows(ms, 5);
+
+    freeMemMatrices(ms, 5);
+}
+
