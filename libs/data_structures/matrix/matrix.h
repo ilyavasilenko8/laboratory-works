@@ -174,6 +174,12 @@ void test_isMutuallyInverseMatrices_2();
 void test_isMutuallyInverseMatrices_3();
 
 void test_isMutuallyInverseMatrices();
+
+int max(int a, int b);
+
+long long findSumOfMaxesOfPseudoDiagonal(matrix m);
+
+void test_findSumOfMaxesOfPseudoDiagonal();
 #endif //GIT_PROJECT_MATRIX_H
 
 

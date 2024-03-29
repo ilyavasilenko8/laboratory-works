@@ -1,6 +1,6 @@
 #include "libs/data_structures/matrix/matrix.h"
 
 int main(){
-    test_isMutuallyInverseMatrices();
+    test_findSumOfMaxesOfPseudoDiagonal();
     return 0;
 }
