@@ -922,26 +922,26 @@ void test_getMinInArea() {
     test_getMinInArea_3();
 }
 
-float getDistance(int *a, int n){
+float getDistance(int *a, int n) {
     int sum = 0;
 
-    for(int i = 0; i < n; i++){
-        sum += a[i]*a[i];
+    for (int i = 0; i < n; i++) {
+        sum += a[i] * a[i];
     }
     return sqrtf(sum);
 }
 
 void insertionSortRowsMatrixByRowCriteriaF(matrix m,
-                                           float (*criteria)(int*, int)){
-    float *values = malloc(sizeof(int)*m.nRows);
+                                           float (*criteria)(int *, int)) {
+    float *values = malloc(sizeof(int) * m.nRows);
 
-    for(int i = 0; i < m.nRows; i++){
+    for (int i = 0; i < m.nRows; i++) {
         values[i] = criteria(m.values[i], m.nCols);
     }
 
-    for(int i = 0; i < m.nRows; i++){
-        for(int j = 0; j < i; j++){
-            if(values[i] < values[j]){
+    for (int i = 0; i < m.nRows; i++) {
+        for (int j = 0; j < i; j++) {
+            if (values[i] < values[j]) {
                 float t = values[i];
                 values[i] = values[j];
                 values[j] = t;
@@ -952,17 +952,17 @@ void insertionSortRowsMatrixByRowCriteriaF(matrix m,
     free(values);
 }
 
-void sortByDistance(matrix m){
+void sortByDistance(matrix m) {
     insertionSortRowsMatrixByRowCriteriaF(m, getDistance);
 }
 
 void test_sortByDistances() {
     matrix m = createMatrixFromArray((int[]) {7, 12,
                                               9, 2,
-                                              6, 8},3, 2);
+                                              6, 8}, 3, 2);
     matrix result = createMatrixFromArray((int[]) {9, 2,
                                                    6, 8,
-                                                   7, 12},3, 2);
+                                                   7, 12}, 3, 2);
 
     sortByDistances(m);
 
@@ -971,3 +971,65 @@ void test_sortByDistances() {
     freeMemMatrix(&m);
     freeMemMatrix(&result);
 }
+
+int countNUnique(int *a, int n) {
+    int *unique_numbers = malloc(sizeof(int) * n);
+    int len = 0;
+
+    for (int i = 0; i < n; i++) {
+        bool is_an = false;
+
+        for (int j = 0; j < len && !is_an; j++) {
+            if (a[i] == unique_numbers[j]) {
+                is_an = true;
+            }
+        }
+        if (!is_an) {
+            unique_numbers[len++] = a[i];
+        }
+    }
+    free(unique_numbers);
+
+    return len;
+}
+
+int countEqClassesByRowsSum(matrix m) {
+    int *unique_sums = malloc(sizeof(int) * m.nRows);
+
+    for (int i = 0; i < m.nRows; i++) {
+        unique_sums[i] = getSum(m.values[i], m.nCols);
+    }
+
+    int res = countNUnique(unique_sums, m.nRows);
+
+    free(unique_sums);
+
+    return res;
+}
+
+void test_countEqClassesByRowsSum_1() {
+    matrix m = createMatrixFromArray((int[]) {}, 0, 0);
+
+    assert(countEqClassesByRowsSum(m) == 0);
+
+    freeMemMatrix(&m);
+}
+
+void test_countEqClassesByRowsSum_2() {
+    matrix m = createMatrixFromArray((int[]) {7, 1,
+                                              2, 7,
+                                              5, 4,
+                                              4, 3,
+                                              1, 6,
+                                              8, 0}, 6, 2);
+
+    assert(countEqClassesByRowsSum(m) == 3);
+
+    freeMemMatrix(&m);
+}
+
+void test_countEqClassesByRowsSum() {
+    test_countEqClassesByRowsSum_1();
+    test_countEqClassesByRowsSum_2();
+}
+

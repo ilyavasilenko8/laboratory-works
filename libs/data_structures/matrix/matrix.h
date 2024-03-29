@@ -199,6 +199,16 @@ void insertionSortRowsMatrixByRowCriteriaF(matrix m,
 void sortByDistances(matrix m);
 
 void test_sortByDistances();
+
+int countNUnique(int *a, int n);
+
+int countEqClassesByRowsSum(matrix m);
+
+void test_countEqClassesByRowsSum_1();
+
+void test_countEqClassesByRowsSum_2();
+
+void test_countEqClassesByRowsSum();
 #endif //GIT_PROJECT_MATRIX_H
 
 
