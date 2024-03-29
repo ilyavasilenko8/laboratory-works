@@ -209,6 +209,14 @@ void test_countEqClassesByRowsSum_1();
 void test_countEqClassesByRowsSum_2();
 
 void test_countEqClassesByRowsSum();
+
+int getNSpecialElement(matrix m);
+
+void test_getNSpecialElement_1();
+
+void test_getNSpecialElement_2();
+
+void test_getNSpecialElement();
 #endif //GIT_PROJECT_MATRIX_H
 
 

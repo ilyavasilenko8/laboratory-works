@@ -1033,3 +1033,43 @@ void test_countEqClassesByRowsSum() {
     test_countEqClassesByRowsSum_2();
 }
 
+int getNSpecialElement(matrix m) {
+    int res = 0;
+
+    for (int i = 0; i < m.nCols; i++) {
+        int sum = 0;
+
+        for (int j = 0; j < m.nRows; j++) {
+            sum += m.values[i][j];
+        }
+        for (int j = 0; j < m.nRows; j++) {
+            if (m.values[j][i] > sum - m.values[j][i]) {
+                res++;
+            }
+        }
+    }
+    return res;
+}
+
+void test_getNSpecialElement_1() {
+    matrix m = createMatrixFromArray((int[]) {}, 0, 0);
+
+    assert(getNSpecialElement(m) == 0);
+
+    freeMemMatrix(&m);
+}
+
+void test_getNSpecialElement_2() {
+    matrix m = createMatrixFromArray((int[]) {3, 5, 5, 4,
+                                              2, 3, 6, 7,
+                                              12, 2, 1, 2}, 3, 4);
+
+    assert(getNSpecialElement(m) == 2);
+
+    freeMemMatrix(&m);
+}
+
+void test_getNSpecialElement() {
+    test_getNSpecialElement_1();
+    test_getNSpecialElement_2();
+}
