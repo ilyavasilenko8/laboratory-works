@@ -138,6 +138,18 @@ void test_sortColsByMinElement_1();
 void test_sortColsByMinElement_2();
 
 void test_sortColsByMinElement();
+
+matrix mulMatrices(matrix m1, matrix m2);
+
+void getSquareOfMatrixIfSymmetric(matrix *m);
+
+void test_getSquareOfMatrixIfSymmetric_1();
+
+void test_getSquareOfMatrixIfSymmetric_2();
+
+void test_getSquareOfMatrixIfSymmetric_3();
+
+void test_getSquareOfMatrixIfSymmetric();
 #endif //GIT_PROJECT_MATRIX_H
 
 

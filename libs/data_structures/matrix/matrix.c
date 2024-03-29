@@ -608,3 +608,75 @@ void test_sortColsByMinElement() {
     test_sortColsByMinElement_1();
     test_sortColsByMinElement_2();
 }
+
+matrix mulMatrices(matrix m1, matrix m2) {
+    int rows = m1.nRows;
+    int cols = m1.nCols;
+
+    matrix res = getMemMatrix(rows, cols);
+
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < cols; j++) {
+            int sum = 0;
+
+            for (int g = 0; g < rows; g++) {
+                sum += m1.values[i][g] * m2.values[g][j];
+            }
+
+            res.values[i][j] = sum;
+        }
+    }
+    return res;
+}
+
+void getSquareOfMatrixIfSymmetric(matrix *m) {
+    if (isSymmetricMatrix(m)) {
+        *m = mulMatrices(*m, *m);
+    }
+}
+
+void test_getSquareOfMatrixIfSymmetric_1() {
+    matrix m = createMatrixFromArray((int[]) {1, 4, 2,
+                                              4, 3, 6,
+                                              2, 6, 5}, 3, 3);
+    matrix res = createMatrixFromArray((int[]) {21, 28, 36,
+                                                28, 61, 56,
+                                                36, 56, 65}, 3, 3);
+
+    getSquareOfMatrixIfSymmetric(&m);
+
+    assert(areTwoMatricesEqual(&m, &res));
+
+    freeMemMatrix(&m);
+    freeMemMatrix(&res);
+}
+
+void test_getSquareOfMatrixIfSymmetric_2() {
+    matrix m = createMatrixFromArray((int[]) {1, 4, 2,
+                                              3, 3, 6,
+                                              2, 6, 5}, 3, 3);
+    matrix res = createMatrixFromArray((int[]) {1, 4, 2,
+                                                3, 3, 6,
+                                                2, 6, 5}, 3, 3);
+
+    getSquareOfMatrixIfSymmetric(&m);
+
+    assert(areTwoMatricesEqual(&m, &res));
+
+    freeMemMatrix(&m);
+    freeMemMatrix(&res);
+}
+
+void test_getSquareOfMatrixIfSymmetric_3() {
+    matrix m = createMatrixFromArray((int[]) {}, 0, 0);
+
+    getSquareOfMatrixIfSymmetric(&m);
+
+    freeMemMatrix(&m);
+}
+
+void test_getSquareOfMatrixIfSymmetric() {
+    test_getSquareOfMatrixIfSymmetric_1();
+    test_getSquareOfMatrixIfSymmetric_2();
+    test_getSquareOfMatrixIfSymmetric_3();
+}
