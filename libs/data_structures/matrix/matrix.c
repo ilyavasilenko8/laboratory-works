@@ -1089,6 +1089,14 @@ void swapPenultimateRow(matrix m) {
     }
 }
 
+void test_swapPenultimateRow_1() {
+    matrix m = createMatrixFromArray((int[]) {},0, 0);
+
+    swapPenultimateRow(m);
+
+    freeMemMatrix(&m);
+}
+
 void test_swapPenultimateRow_2() {
     matrix m = createMatrixFromArray((int[]) {1, 2, 3,
                                               4, 5, 6,
